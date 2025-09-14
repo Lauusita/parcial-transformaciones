@@ -85,16 +85,16 @@ def teclaIzquierda(event):
     plt.draw()
 
 def teclaArriba(event):
-    global offset_y
-    offset_y += 50
-    mostrar_casa(ax)
-    plt.draw()
+  global offset_y
+  offset_y += 50
+  mostrar_casa(ax)
+  plt.draw()
 
 def teclaAbajo(event):
-    global offset_y
-    offset_y -= 50
-    mostrar_casa(ax)
-    plt.draw()
+  global offset_y
+  offset_y -= 50
+  mostrar_casa(ax)
+  plt.draw()
 
 def aplicar_rotacion(theta):
   global imagen_actual

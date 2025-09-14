@@ -6,62 +6,58 @@ import cv2
 imagen_1 = cv2.imread("./assets/mono.jpeg")
 imagen_2 = cv2.imread("./assets/bayas.jpeg")
 
+compararImg1 = cv2.imread("./assets/compare1.png")
+compararImg2 = cv2.imread("./assets/compare2.png")
+
 fig, ax = plt.subplots()
 plt.subplots_adjust(bottom=0.25)
 
 def mostrar(ax, imagen):
   ax.clear()
   ax.imshow(cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB))
-
   ax.set_aspect('equal', 'box')
 
-
-def sumaImagenes(imagen1, imagen2, alpha=0.4):
+def sumaImagenes(imagen_1, imagen_2, alpha=0.4):
   if alpha > 1:
     print("Los pesos deben estar entre 0 y 1")
     return
   
-  filas, cols, canales = imagen1.shape
-  salida = np.zeros_like(imagen1, dtype=np.uint8)
+  filas, cols, canales = imagen_1.shape
+  salida = np.zeros_like(imagen_1, dtype=np.uint8)
 
-  imagen2 = cv2.resize(imagen2, (cols, filas))
+  imagen_2 = cv2.resize(imagen_2, (cols, filas))
 
   for i in range(filas):
     for j in range(cols):
       for c in range(3):
         salida[i, j, c] = int(
-          alpha * imagen1[i, j, c] + (1 - alpha) * imagen2[i, j, c]
+          alpha * imagen_1[i, j, c] + (1 - alpha) * imagen_2[i, j, c]
         )
 
   mostrar(ax, salida)
   plt.show()
 
-def restaImagenes(imagen1, imagen2):
-  gray_imagen1 = cv2.cvtColor(imagen1, cv2.COLOR_BGR2GRAY)
-  gray_imagen2 = cv2.cvtColor(imagen2, cv2.COLOR_BGR2GRAY)
+def restaImagenes(imagen_1, imagen_2):
+  gray_imagen_1 = cv2.cvtColor(imagen_1, cv2.COLOR_BGR2GRAY)
+  gray_imagen_2 = cv2.cvtColor(imagen_2, cv2.COLOR_BGR2GRAY)
 
-  filas, cols = gray_imagen1.shape
+  filas, cols = gray_imagen_1.shape
 
-  gray_imagen2 = cv2.resize(gray_imagen2, (cols, filas))
+  gray_imagen_2 = cv2.resize(gray_imagen_2, (cols, filas))
 
   imgResta = np.zeros((filas, cols), dtype=np.uint8)
 
   for i in range(filas):
     for j in range(cols):
-      valoresImagen1 = int(gray_imagen1[i, j])
-      valoresImagen2 = int(gray_imagen2[i, j])
-      valor = valoresImagen1 - valoresImagen2
+      valoresimagen_1 = int(gray_imagen_1[i, j])
+      valoresimagen_2 = int(gray_imagen_2[i, j])
+      valor = valoresimagen_1 - valoresimagen_2
       if valor < 0:
         valor = 0
       imgResta[i, j] = valor
 
   mostrar(ax, imgResta)
   plt.show()
-
-compararImg1 = cv2.imread("./assets/compare1.png")
-compararImg2 = cv2.imread("./assets/compare2.png")
-
-sumaImagenes(compararImg2, compararImg1, 0.4)
 
 def imagenAlCuadrado(imagen):
   gray_imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
@@ -148,8 +144,6 @@ def imagenRaizCubica(imagen):
   plt.show()
 
 
-
-
 # Gráficas
 def mostrarGrafica(ax, x, y, lim):
   if 0 <= lim <= 255:
@@ -223,4 +217,14 @@ def multiplicarPor3():
   mostrarGrafica(ax, x, y, x_top)
   plt.show()
 
-identidad()
+# sumaImagenes(imagen_1, imagen_2, alpha=0.6)
+# imagenAlCuadrado(imagen_1)
+# imagenRaizCuadrada(imagen_1)
+# imagenRaizCubica(imagen_1)
+
+# identidad()
+# suma(64)
+# resta(64)
+# multiplicarPor2()
+# dividirPor2()
+# multiplicarPor3()
