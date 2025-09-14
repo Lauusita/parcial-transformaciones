@@ -73,16 +73,16 @@ def rotar_manual(imagen, angulo):
   return salida
 
 def teclaDerecha(event):
-    global offset_x
-    offset_x += 50
-    mostrar_casa(ax)
-    plt.draw()
+  global offset_x
+  offset_x += 50
+  mostrar_casa(ax)
+  plt.draw()
 
 def teclaIzquierda(event):
-    global offset_x
-    offset_x -= 50
-    mostrar_casa(ax)
-    plt.draw()
+  global offset_x
+  offset_x -= 50
+  mostrar_casa(ax)
+  plt.draw()
 
 def teclaArriba(event):
   global offset_y

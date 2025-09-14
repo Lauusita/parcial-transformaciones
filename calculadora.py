@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib.widgets import TextBox, Button
 import numpy as np
 import cv2
 
